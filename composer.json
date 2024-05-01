@@ -14,7 +14,7 @@
         "fpdf/fpdf": "^1.86",
         "guzzlehttp/guzzle": "^7.2",
 
-        "icetalker/filament-table-repeater": "^1.1",
+        "icetalker/filament-table-repeater": "^1.1"
 
     },
     "require-dev": {
