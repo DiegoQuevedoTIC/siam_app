@@ -77,7 +77,7 @@ class DocumentoResource extends Resource
                 ->previewable(true)
                 ->deletable(false)
                 ->maxSize(1024)
-                ->disk('digitalocean')
+                ->disk('local')
                 ->directory('documentos')
                 ->visibility('public'),
             ]);
