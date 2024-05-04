@@ -69,7 +69,7 @@ class DocumentoResource extends Resource
                 ->openable()
                 ->deletable(false)
                 ->previewable(true)
-                ->disk('C')
+                ->disk('digitalocean')
                 ->directory('digital')
                 ->visibility('public'),
             ]);
