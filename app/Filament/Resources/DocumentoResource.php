@@ -22,6 +22,7 @@ use Filament\Forms\Get;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class DocumentoResource extends Resource
 {
@@ -53,7 +54,6 @@ class DocumentoResource extends Resource
             Select::make('llave_de_consulta_id')
                 ->columnSpan(1)
                 ->label('Referencia')
-                ->loadingMessage('Cargado Operaciones...')
                 ->options(function (Get $get): Collection {
                     if ($get('documentoclase_id') == 1) {
                         return Collection::make(Solicitud::query()->pluck('solicitud', 'id')->toArray());
@@ -65,12 +65,20 @@ class DocumentoResource extends Resource
                 }),
             FileUpload::make('ruta_imagen')
                 ->label('Imagen del Documento')
+                ->getUploadedFileNameForStorageUsing(
+                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                    ->prepend('Solicitud-'),
+                         )
                 ->columnSpan(6)
                 ->openable()
                 ->deletable(false)
+                ->downloadable()
+                ->acceptedFileTypes(['application/pdf'])
                 ->previewable(true)
-                ->disk('C')
-                ->directory('digital')
+                ->deletable(false)
+                ->maxSize(1024)
+                ->disk('digitalocean')
+                ->directory('documentos')
                 ->visibility('public'),
             ]);
     }
