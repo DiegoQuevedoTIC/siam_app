@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'digitalocean'),
+    'default' => env('FILESYSTEM_DISK', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,14 +29,6 @@ return [
     */
 
     'disks' => [
-
-        'C' => [
-            'driver' => 'local',
-            'root' => 'C:', // Ruta donde deseas guardar los archivos en el disco C
-            'url' => '/', // URL base para acceder a los archivos
-            'visibility' => 'public',
-        ],
-
 
         'local' => [
             'driver' => 'local',
@@ -63,16 +55,6 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
-
-        'digitalocean' => [
-            'driver' => 's3',
-            'key' => env('DIGITALOCEAN_SPACES_KEY'),
-            'secret' => env('DIGITALOCEAN_SPACES_SECRET'),
-            'endpoint' => env('DIGITALOCEAN_SPACES_ENDPOINT'),
-            'region' => env('DIGITALOCEAN_SPACES_REGION'),
-            'bucket' => env('DIGITALOCEAN_SPACES_BUCKET'),
-        ],
-
     ],
 
     /*
