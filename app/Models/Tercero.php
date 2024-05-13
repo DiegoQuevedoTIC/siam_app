@@ -19,7 +19,7 @@ class Tercero extends Model
     {
         return $this->belongsTo(Pais::class);
     }
- 
+
 
 
     public function ciudad(): BelongsTo
@@ -68,7 +68,7 @@ class Tercero extends Model
     {
         return $this->hasOne(TerceroSarlaft::class);
     }
- 
+
 
 
     public function InformacionFinanciera(): HasOne
@@ -77,7 +77,7 @@ class Tercero extends Model
     }
 
 
- 
+
     public function Referencias(): HasOne
     {
         return $this->hasOne(Referencias::class);
@@ -98,6 +98,15 @@ class Tercero extends Model
         return $this->hasOne(Asociado::class);
     }
 
+
+
+    public function documento(): HasOne
+    {
+        return $this->hasOne(Documento::class);
+    }
+
+
+
     public function comprobantes(): HasMany
     {
         return $this->hasMany(Comprobante::class);
@@ -109,7 +118,7 @@ class Tercero extends Model
     }
 
 
-    
+
     protected $fillable = [
         'tercero_id',
         'digito_verificacion',
@@ -127,12 +136,12 @@ class Tercero extends Model
         'tipo_contribuyente_id',
         'ocupacion',
         'nivelescolar_id',
-        'estadocivil_id',  
+        'estadocivil_id',
         'observaciones',
 
 
     ];
- 
+
     protected $casts = [
         'active' => 'boolean',
     ];

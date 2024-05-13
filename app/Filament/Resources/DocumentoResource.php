@@ -76,7 +76,6 @@ class DocumentoResource extends Resource
                 ->acceptedFileTypes(['application/pdf'])
                 ->previewable(true)
                 ->deletable(false)
-                ->maxSize(1024)
                 ->disk('public')
                 ->directory('documentos')
                 ->visibility('public'),
@@ -93,8 +92,8 @@ class DocumentoResource extends Resource
                 TextColumn::make('documentotipo.nombre')
                         ->label('Tipo Documento')
                         ->searchable(),
-                TextColumn::make('solicitud.solicitud')
-                        ->label('Solicitud de Credito')
+                TextColumn::make('solicitud.asociado')
+                        ->label('Tercero ID')
                         ->searchable(),
                 TextColumn::make('solicitud.asociado_id')
                         ->label('Asociado')
