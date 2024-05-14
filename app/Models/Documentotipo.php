@@ -13,4 +13,13 @@ class Documentotipo extends Model
     {
         return $this->belongsTo(Documentoclase::class);
     }
+
+
+        public function documentos(): HasMany
+    {
+        return $this->hasMany(Documento::class);
+    }
+
+
+
 }

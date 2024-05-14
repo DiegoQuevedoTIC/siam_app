@@ -10,24 +10,21 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Documento extends Model
 {
-       public function documentoclase()
+    public function documentoclase()
     {
         return $this->belongsTo(Documentoclase::class);
     }
-
     public function documentotipo()
     {
         return $this->belongsTo(Documentotipo::class);
     }
 
-    public function llaveDeConsulta()
+    public function solicitud()
     {
         return $this->belongsTo(Solicitud::class);
     }
 
-        public function llaveDeConsultaContabilidad()
-    {
-        return $this->belongsTo(Comprobante::class);
-    }
+
+
 }
 

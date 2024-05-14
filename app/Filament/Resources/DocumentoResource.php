@@ -92,12 +92,7 @@ class DocumentoResource extends Resource
                 TextColumn::make('documentotipo.nombre')
                         ->label('Tipo Documento')
                         ->searchable(),
-                TextColumn::make('solicitud.asociado')
-                        ->label('Tercero ID')
-                        ->searchable(),
-                TextColumn::make('solicitud.asociado_id')
-                        ->label('Asociado')
-                        ->searchable(),
+
             ])
             ->filters([
                 //

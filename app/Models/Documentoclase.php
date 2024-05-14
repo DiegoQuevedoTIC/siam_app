@@ -15,14 +15,5 @@ class Documentoclase extends Model
         return $this->hasMany(Documentotipo::class);
     }
 
-        public function comprobantes(): HasMany
-    {
-        return $this->hasMany(Comprobante::class);
-    }
 
-
-            public function solicitudes(): HasMany
-    {
-        return $this->hasMany(Solicitud::class);
-    }
 }

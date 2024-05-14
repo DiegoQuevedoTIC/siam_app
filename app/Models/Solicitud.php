@@ -17,20 +17,14 @@ class Solicitud extends Model
         return $this->belongsTo(Tercero::class);
     }
 
-    public function documentos()
+
+    public function documentos(): HasMany
     {
-        return $this->morphMany(Documento::class, 'llave_de_consulta');
+        return $this->hasMany(Documento::class);
     }
 
     public function documentoclase(): BelongsTo
     {
         return $this->belongsTo(Documentoclase::class);
     }
-
-    public function solicitudes(): HasMany
-    {
-        return $this->hasMany(Solicitud::class);
-    }
-
-
 }
