@@ -14,8 +14,10 @@ return new class extends Migration
             $table->unsignedBigInteger('documentoclase_id');
             $table->unsignedBigInteger('documentotipo_id');
             $table->unsignedBigInteger('llave_de_consulta_id');
-            $table->string('ruta_imagen'); // Campo para la ruta o nombre del archivo de la imagen
-            // Otros campos de tu documento
+            $table->string('ruta_imagen');
+            $table->string('ruta_imagen_1');
+            $table->string('ruta_imagen_2');
+            $table->string('ruta_imagen_3');
             $table->string('llave_de_consulta_type'); // Campo para el tipo de la llave de consulta
             $table->foreign('documentoclase_id')->references('id')->on('documentoclases');
             $table->foreign('documentotipo_id')->references('id')->on('documentotipos');

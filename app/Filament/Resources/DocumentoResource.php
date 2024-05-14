@@ -42,17 +42,11 @@ class DocumentoResource extends Resource
             ->schema([
             Select::make('documentoclase_id')
                 ->label('Clase')
-                ->columnSpan(2)
+                ->columnSpan(4)
                 ->options(Documentoclase::all()->pluck('nombre', 'id'))
                 ->live(),
-            Select::make('documentotipo_id')
-                ->label('Tipo de Documento')
-                ->columnSpan(3)
-                ->options(fn (Get $get): Collection => Documentotipo::query()
-                ->where('documentoclase_id', $get('documentoclase_id'))
-                ->pluck('nombre', 'id')),
             Select::make('llave_de_consulta_id')
-                ->columnSpan(1)
+                ->columnSpan(2)
                 ->label('Referencia')
                 ->options(function (Get $get): Collection {
                     if ($get('documentoclase_id') == 1) {
@@ -64,20 +58,63 @@ class DocumentoResource extends Resource
                     }
                 }),
             FileUpload::make('ruta_imagen')
-                ->label('Imagen del Documento')
+                ->label('Pagare y Carta de Instucciones')
                 ->getUploadedFileNameForStorageUsing(
                 fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend('Solicitud-'),
+                    ->prepend('Pagare-'),
                          )
                 ->columnSpan(6)
                 ->openable()
                 ->deletable(false)
                 ->downloadable()
-                ->acceptedFileTypes(['application/pdf'])
                 ->previewable(true)
-                ->deletable(false)
                 ->disk('public')
-                ->directory('documentos')
+                ->directory('pagares')
+                ->visibility('public'),
+
+            FileUpload::make('ruta_imagen_1')
+                ->label('Comprobante Contabilidad')
+                ->getUploadedFileNameForStorageUsing(
+                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                    ->prepend('Comprobante Contable-'),
+                         )
+                ->columnSpan(6)
+                ->openable()
+                ->deletable(false)
+                ->downloadable()
+                ->previewable(true)
+                ->disk('public')
+                ->directory('contabilidad')
+                ->visibility('public'),
+
+            FileUpload::make('ruta_imagen_2')
+                ->label('Formulario de Solicitud')
+                ->getUploadedFileNameForStorageUsing(
+                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                    ->prepend('Formulario Solicitud-'),
+                         )
+                ->columnSpan(6)
+                ->openable()
+                ->deletable(false)
+                ->downloadable()
+                ->previewable(true)
+                ->disk('public')
+                ->directory('formularios_solicitud')
+                ->visibility('public'),
+
+            FileUpload::make('ruta_imagen_3')
+                ->label('Seguro de Vida Deudores')
+                ->getUploadedFileNameForStorageUsing(
+                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                    ->prepend('Seguro No de vida arriera-'),
+                         )
+                ->columnSpan(6)
+                ->openable()
+                ->deletable(false)
+                ->downloadable()
+                ->previewable(true)
+                ->disk('public')
+                ->directory('Seguros')
                 ->visibility('public'),
             ]);
     }
