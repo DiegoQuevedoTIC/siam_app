@@ -62,7 +62,7 @@ class DocumentoResource extends Resource
                 ->label('Pagare y Carta de Instucciones')
                 ->getUploadedFileNameForStorageUsing(
                 fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend('Pagare-'),
+                    ->prepend('Pagare-PG'),
                          )
                 ->columnSpan(6)
                 ->openable()
@@ -72,12 +72,11 @@ class DocumentoResource extends Resource
                 ->disk('public')
                 ->directory('pagares')
                 ->visibility('public'),
-
             FileUpload::make('ruta_imagen_1')
                 ->label('Comprobante Contabilidad')
                 ->getUploadedFileNameForStorageUsing(
                 fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend('Comprobante Contable-'),
+                    ->prepend('Comprobante_Contable-CE'),
                          )
                 ->columnSpan(6)
                 ->openable()
@@ -87,12 +86,11 @@ class DocumentoResource extends Resource
                 ->disk('public')
                 ->directory('contabilidad')
                 ->visibility('public'),
-
             FileUpload::make('ruta_imagen_2')
                 ->label('Formulario de Solicitud')
                 ->getUploadedFileNameForStorageUsing(
                 fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend('Formulario Solicitud-'),
+                    ->prepend('Solicitud-SC'),
                          )
                 ->columnSpan(6)
                 ->openable()
@@ -102,12 +100,11 @@ class DocumentoResource extends Resource
                 ->disk('public')
                 ->directory('formularios_solicitud')
                 ->visibility('public'),
-
             FileUpload::make('ruta_imagen_3')
                 ->label('Seguro de Vida Deudores')
                 ->getUploadedFileNameForStorageUsing(
                 fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend('Seguro No de vida arriera-'),
+                    ->prepend('Seguro-SG'),
                          )
                 ->columnSpan(6)
                 ->openable()
@@ -125,12 +122,10 @@ class DocumentoResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('documentoclase.sigla')
-                        ->label('Sigla TD')
+                        ->label('Sigla TD'),
+                TextColumn::make('llave_de_consulta_id')
+                        ->label('Pagare')
                         ->searchable(),
-                TextColumn::make('documentotipo.nombre')
-                        ->label('Tipo Documento')
-                        ->searchable(),
-
             ])
             ->filters([
                 //
