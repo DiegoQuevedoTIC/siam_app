@@ -48,6 +48,7 @@ class DocumentoResource extends Resource
             Select::make('llave_de_consulta_id')
                 ->columnSpan(2)
                 ->label('Referencia')
+                ->searchable()
                 ->options(function (Get $get): Collection {
                     if ($get('documentoclase_id') == 1) {
                         return Collection::make(Solicitud::query()->pluck('solicitud', 'id')->toArray());
