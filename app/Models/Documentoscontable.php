@@ -12,13 +12,17 @@ class Documentoscontable extends Model
 {
     use HasFactory;
 
-        public function documentotipos(): HasMany
+    protected $table = 'documentoscontables';
+
+        public function documentotipo(): BelongsTo
     {
-        return $this->hasMany(Documentotipo::class);
+        return $this->BelongsTo(Documentotipo::class);
     }
 
         public function documentoclases(): HasMany
     {
         return $this->hasMany(Documentoclase::class);
     }
+
+
 }

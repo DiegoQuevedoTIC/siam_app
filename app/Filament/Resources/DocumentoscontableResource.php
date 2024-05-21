@@ -58,6 +58,7 @@ class DocumentoscontableResource extends Resource
             TextInput::make('llave_de_consulta_id')
                 ->columnSpan(2)
                 ->label('No Comprobante')
+                ->disabled(fn ($record) => optional($record)->exists ?? false)
                 ->required()
                 ->maxLength(7),
             FileUpload::make('ruta_imagen')
