@@ -17,6 +17,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Resource;
 use Illuminate\Support\Collection;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables;
 use Filament\Forms\Get;
 use Filament\Tables\Table;
@@ -130,6 +131,7 @@ class DocumentoResource extends Resource
                 TextColumn::make('llave_de_consulta_id')
                         ->label('Pagare')
                         ->searchable(),
+                CheckboxColumn::make('Registro Validado?')
             ])
             ->filters([
                 //

@@ -95,8 +95,6 @@ class DocumentoscontableResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('documentoclase.sigla')
-                        ->label('Sigla TD'),
                 TextColumn::make('documentotipo.nombre')
                         ->label('Tipo Documento'),
                 TextColumn::make('llave_de_consulta_id')
