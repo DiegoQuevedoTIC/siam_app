@@ -30,8 +30,8 @@ class DocumentoscontableResource extends Resource
 {
     protected static ?string $model = Documentoscontable::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string    $navigationLabel = 'Digitalizacion Contables';
+    protected static ?string $navigationIcon = 'heroicon-o-paper-clip';
+    protected static ?string    $navigationLabel = 'Digitalizacion Doc. Contables';
     protected static ?string    $navigationGroup = 'Gestion Documental';
     protected static ?string    $slug = 'Par/Tab/Contables';
     protected static ?int       $navigationSort = 3;

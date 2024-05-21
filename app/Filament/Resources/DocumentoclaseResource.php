@@ -20,7 +20,7 @@ class DocumentoclaseResource extends Resource
 {
     protected static ?string $model = Documentoclase::class;
 
-    protected static ?string    $navigationIcon = 'heroicon-o-user-plus';
+    protected static ?string    $navigationIcon = 'heroicon-o-puzzle-piece';
     protected static ?string    $navigationLabel = 'Tablas de Retencion';
     protected static ?string    $navigationGroup = 'Gestion Documental';
     protected static ?string    $modelLabel = 'Tabla Retencion';

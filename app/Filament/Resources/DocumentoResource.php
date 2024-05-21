@@ -29,8 +29,8 @@ class DocumentoResource extends Resource
 {
     protected static ?string $model = Documento::class;
 
-    protected static ?string    $navigationIcon = 'heroicon-m-document';
-    protected static ?string    $navigationLabel = 'Digitalizacion Documento';
+    protected static ?string    $navigationIcon = 'heroicon-m-rocket-launch';
+    protected static ?string    $navigationLabel = 'Digitalizacion Pagares';
     protected static ?string    $navigationGroup = 'Gestion Documental';
     protected static ?string    $modelLabel = 'Documentos';
     protected static ?string    $slug = 'Par/Tab/Digitalizar';
