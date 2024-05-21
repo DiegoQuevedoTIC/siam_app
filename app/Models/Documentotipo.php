@@ -21,5 +21,11 @@ class Documentotipo extends Model
     }
 
 
+            public function documentoscontables(): HasMany
+    {
+        return $this->hasMany(Documentoscontable::class);
+    }
+
+
 
 }

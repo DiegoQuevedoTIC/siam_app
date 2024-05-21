@@ -6,24 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('documentos', function (Blueprint $table) {
+        Schema::create('documentoscontables', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('documentoclase_id');
-            $table->unsignedBigInteger('llave_de_consulta_id');
+            $table->unsignedBigInteger('documentotipo_id');
+            $table->string('llave_de_consulta_id');
             $table->string('ruta_imagen');
             $table->string('ruta_imagen_1');
-            $table->string('ruta_imagen_2');
-            $table->string('ruta_imagen_3');
             $table->foreign('documentoclase_id')->references('id')->on('documentoclases');
+            $table->foreign('documentotipo_id')->references('id')->on('documentotipos');
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('documentos');
+        Schema::dropIfExists('documentoscontables');
     }
 };

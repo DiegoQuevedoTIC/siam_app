@@ -41,14 +41,14 @@ class DocumentoResource extends Resource
             ->columns(6)
             ->schema([
             Select::make('documentoclase_id')
-                ->label('Clase')
+                ->label('Clase Documental')
                 ->columnSpan(4)
                 ->disabled(fn ($record) => optional($record)->exists ?? false) // Verificar si $record existe antes de acceder a ->exists
                 ->options(Documentoclase::all()->pluck('nombre', 'id'))
                 ->live(),
             Select::make('llave_de_consulta_id')
                 ->columnSpan(2)
-                ->label('Referencia')
+                ->label('No Pagare')
                 ->searchable()
                 ->disabled(fn ($record) => optional($record)->exists ?? false) // Verificar si $record existe antes de acceder a ->exists
                 ->unique(ignoreRecord: true)
@@ -57,8 +57,6 @@ class DocumentoResource extends Resource
                         return Collection::make(Solicitud::query()->pluck('solicitud', 'id')->toArray());
                     } elseif ($get('documentoclase_id') == 2) {
                         return Collection::make(Comprobante::query()->pluck('n_documento', 'id')->toArray());
-                    } else {
-                        return Collection::make([]);
                     }
                 }),
             FileUpload::make('ruta_imagen')
@@ -75,6 +73,9 @@ class DocumentoResource extends Resource
                 ->disk('public')
                 ->directory('pagares')
                 ->visibility('public'),
+
+
+
             FileUpload::make('ruta_imagen_1')
                 ->label('Comprobante Contabilidad')
                 ->getUploadedFileNameForStorageUsing(

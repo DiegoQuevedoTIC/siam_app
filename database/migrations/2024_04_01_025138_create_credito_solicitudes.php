@@ -62,8 +62,6 @@ return new class extends Migration
             $table->float('vlr_cuota')->nullable();
             $table->integer('ciius')->default(0)->nullable();
             $table->date('fecha_primer_vto')->nullable();
-
-
             $table->foreign('asociado_id')->references('id')->on('asociados');
             $table->foreign('tasa_id')->references('id')->on('tasas');
             $table->timestamps();
