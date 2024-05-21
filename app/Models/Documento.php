@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Documento extends Model
 {
+    use HasFactory;
+
+    protected $table = 'documentos';
+
     public function documentoclase()
     {
         return $this->belongsTo(Documentoclase::class);
