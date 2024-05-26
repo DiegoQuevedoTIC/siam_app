@@ -30,13 +30,9 @@ class DocumentotiposRelationManager extends RelationManager
                 ->maxLength(255),
             Textarea::make('descripcion')
                 ->label('Descripción')
-                ->rows(3)
+                ->rows(2)
                 ->maxLength(500)
                 ->hint('Opcional: Breve descripción del tipo de documento.'),
-            Checkbox::make('exigido')
-                ->label('¿Es Exigido?')
-                ->default(true)
-                ->hint('Indica si este tipo de documento es exigido en los procesos.'),
             ]);
     }
 

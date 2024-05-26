@@ -2,40 +2,37 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DocumentoscontableResource\Pages;
-use App\Filament\Resources\DocumentoscontableResource\RelationManagers;
-use App\Models\Documentoscontable;
+use App\Filament\Resources\DocumentosotroResource\Pages;
+use App\Filament\Resources\DocumentosotroResource\RelationManagers;
+use App\Models\Documentosotro;
 use App\Models\Documentoclase;
 use App\Models\Documentotipo;
-use App\Models\Comprobante;
-use App\Models\Solicitud;
-use Filament\Forms\ComponentContainer;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
-use Filament\Tables\Columns\TextColumn;
-use Illuminate\Support\Collection;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Get;
+use Illuminate\Support\Collection;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-
-
-class DocumentoscontableResource extends Resource
+class DocumentosotroResource extends Resource
 {
-    protected static ?string $model = Documentoscontable::class;
+    protected static ?string $model = Documentosotro::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-paper-clip';
-    protected static ?string    $navigationLabel = 'Digitalizacion Doc. Contables';
+    protected static ?string    $navigationIcon = 'heroicon-o-light-bulb';
+    protected static ?string    $navigationLabel = 'Actas, Informes y Otros';
     protected static ?string    $navigationGroup = 'Gestion Documental';
-    protected static ?string    $slug = 'Par/Tab/Contables';
-    protected static ?int       $navigationSort = 3;
+    protected static ?string    $slug = 'Par/Tab/Varios';
+    protected static ?int       $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -56,41 +53,29 @@ class DocumentoscontableResource extends Resource
                 ->where('documentoclase_id', $get('documentoclase_id'))
                 ->pluck('nombre', 'id'))
                 ->live(),
-            TextInput::make('llave_de_consulta_id')
-                ->columnSpan(2)
-                ->label('No Comprobante')
-                ->disabled(fn ($record) => optional($record)->exists ?? false)
+            DatePicker::make('fecha_documento')
+                ->markAsRequired(false)
                 ->required()
-                ->unique(ignoreRecord: true)
-                ->maxLength(7),
+                ->columnSpan(2)
+                ->label('Fecha de Nacimiento'),
             FileUpload::make('ruta_imagen')
-                ->label('Documento Contable')
+                ->label('Adjunte el soporte...')
                 ->getUploadedFileNameForStorageUsing(
-                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend('Documento Contable'),
-                         )
+                    fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                ->prepend('Afiliacion-'),
+                                )
                 ->columnSpan(8)
                 ->openable()
                 ->deletable(false)
                 ->downloadable()
                 ->previewable(true)
                 ->disk('public')
-                ->directory('registro_contable')
+                ->directory('varios')
                 ->visibility('public'),
-            FileUpload::make('ruta_imagen_1')
-                ->label('Soportes del Registro')
-                ->getUploadedFileNameForStorageUsing(
-                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend('Soporte'),
-                         )
-                ->columnSpan(8)
-                ->openable()
-                ->deletable(false)
-                ->downloadable()
-                ->previewable(true)
-                ->disk('public')
-                ->directory('registro_contable')
-                ->visibility('public'),
+            Textarea::make('descripcion')
+                ->maxLength(65535)
+                ->markAsRequired(false)
+                ->columnSpanFull(),
             ]);
     }
 
@@ -98,10 +83,13 @@ class DocumentoscontableResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('documentotipo.nombre')
+            TextColumn::make('documentotipo.nombre')
                         ->label('Tipo Documento'),
-                TextColumn::make('llave_de_consulta_id')
-                        ->label('No de Documento')
+            TextColumn::make('fecha_documento')
+                        ->label('Fecha Documento')
+                        ->searchable(),
+            TextColumn::make('descripcion')
+                        ->label('Detalle Documento')
                         ->searchable(),
             ])
             ->filters([
@@ -127,9 +115,9 @@ class DocumentoscontableResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDocumentoscontables::route('/'),
-            'create' => Pages\CreateDocumentoscontable::route('/create'),
-            'edit' => Pages\EditDocumentoscontable::route('/{record}/edit'),
+            'index' => Pages\ListDocumentosotros::route('/'),
+            'create' => Pages\CreateDocumentosotro::route('/create'),
+            'edit' => Pages\EditDocumentosotro::route('/{record}/edit'),
         ];
     }
 }

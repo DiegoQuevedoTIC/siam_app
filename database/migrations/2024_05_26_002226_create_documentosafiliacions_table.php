@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('documentotipos', function (Blueprint $table) {
+        Schema::create('documentosafiliacions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->text('descripcion')->nullable();
-            $table->foreignId('documentoclase_id')->constrained('documentoclases')->cascadeOnDelete();
+            $table->foreignId('documentoclase_id')->constrained('documentoclases');
+            $table->foreignId('tercero_id')->constrained('terceros');
+            $table->string('ruta_imagen');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('documentotipos');
+        Schema::dropIfExists('documentosafiliacions');
     }
 };

@@ -106,6 +106,12 @@ class Tercero extends Model
     }
 
 
+    public function documentosafiliacions(): HasMany
+    {
+        return $this->hasMany(Documentosafiliacion::class);
+    }
+
+
 
     public function comprobantes(): HasMany
     {
