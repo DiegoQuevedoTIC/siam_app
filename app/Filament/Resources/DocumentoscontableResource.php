@@ -60,6 +60,7 @@ class DocumentoscontableResource extends Resource
                 ->label('No Comprobante')
                 ->disabled(fn ($record) => optional($record)->exists ?? false)
                 ->required()
+                ->unique(ignoreRecord: true)
                 ->maxLength(7),
             FileUpload::make('ruta_imagen')
                 ->label('Documento Contable')
