@@ -15,5 +15,10 @@ class Documentoclase extends Model
         return $this->hasMany(Documentotipo::class);
     }
 
+    public function tercero(): BelongsTo
+    {
+        return $this->BelongsTo(Tercero::class);
+    }
+
 
 }

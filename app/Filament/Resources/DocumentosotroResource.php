@@ -31,6 +31,8 @@ class DocumentosotroResource extends Resource
     protected static ?string    $navigationIcon = 'heroicon-o-light-bulb';
     protected static ?string    $navigationLabel = 'Actas, Informes y Otros';
     protected static ?string    $navigationGroup = 'Gestion Documental';
+    protected static ?string    $modelLabel = 'Acta, Informe u Otros';
+    protected static ?string    $pluralModelLabel = 'Actas, Informes y Otros';
     protected static ?string    $slug = 'Par/Tab/Varios';
     protected static ?int       $navigationSort = 5;
 
@@ -100,7 +102,6 @@ class DocumentosotroResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

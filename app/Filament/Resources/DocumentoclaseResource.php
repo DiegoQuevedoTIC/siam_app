@@ -24,6 +24,7 @@ class DocumentoclaseResource extends Resource
     protected static ?string    $navigationLabel = 'Tablas de Retencion';
     protected static ?string    $navigationGroup = 'Gestion Documental';
     protected static ?string    $modelLabel = 'Tabla Retencion';
+    protected static ?string    $pluralModelLabel = 'Tablas de Retencion';
     protected static ?string    $slug = 'Par/Tab/Retencion';
     protected static ?int       $navigationSort = 1;
 
@@ -70,7 +71,6 @@ class DocumentoclaseResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

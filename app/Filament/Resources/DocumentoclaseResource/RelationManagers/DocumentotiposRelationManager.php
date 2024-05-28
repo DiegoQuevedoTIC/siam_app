@@ -18,7 +18,12 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DocumentotiposRelationManager extends RelationManager
 {
-    protected static string $relationship = 'documentotipos';
+    protected static string     $relationship = 'documentotipos';
+    protected static ?string    $modelLabel = 'Tipo de Documentos';
+    protected static ?string    $pluralModelLabel = 'Documentos Tipos';
+    protected static ?string    $navigationLabel = 'Tipo de Documento';
+    protected static ?string    $slug = 'Par/Tab/TipoDoc';
+
 
     public function form(Form $form): Form
     {
@@ -50,7 +55,8 @@ class DocumentotiposRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                ->label('+ Nuevo Tipo de Documento'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

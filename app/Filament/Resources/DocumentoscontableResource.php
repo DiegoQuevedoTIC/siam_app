@@ -31,9 +31,11 @@ class DocumentoscontableResource extends Resource
 {
     protected static ?string $model = Documentoscontable::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-paper-clip';
+    protected static ?string    $navigationIcon = 'heroicon-o-paper-clip';
     protected static ?string    $navigationLabel = 'Digitalizacion Doc. Contables';
     protected static ?string    $navigationGroup = 'Gestion Documental';
+    protected static ?string    $modelLabel = 'Documento Contable';
+    protected static ?string    $pluralModelLabel = 'Digitalizacion Doc. Contables';
     protected static ?string    $slug = 'Par/Tab/Contables';
     protected static ?int       $navigationSort = 3;
 
@@ -112,7 +114,6 @@ class DocumentoscontableResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

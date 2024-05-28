@@ -30,8 +30,14 @@ class DocumentosafiliacionResource extends Resource
     protected static ?string    $navigationIcon = 'heroicon-o-identification';
     protected static ?string    $navigationLabel = 'Digitalizacion Afiliaciones';
     protected static ?string    $navigationGroup = 'Gestion Documental';
+    protected static ?string    $modelLabel = 'Documento Afiliacion';
+    protected static ?string    $pluralModelLabel = 'Digitalizacion Afiliaciones';
     protected static ?string    $slug = 'Par/Tab/Afiliaciones';
     protected static ?int       $navigationSort = 4;
+
+
+
+
 
     public static function form(Form $form): Form
     {
@@ -94,7 +100,6 @@ class DocumentosafiliacionResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

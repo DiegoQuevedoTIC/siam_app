@@ -8,6 +8,7 @@ use App\Models\Documento;
 use App\Models\Documentoclase;
 use App\Models\Documentotipo;
 use App\Models\Solicitud;
+use App\Models\Tercero;
 use App\Models\Comprobante;
 use Filament\Forms\ComponentContainer;
 use Filament\Tables\Columns\TextColumn;
@@ -32,7 +33,8 @@ class DocumentoResource extends Resource
     protected static ?string    $navigationIcon = 'heroicon-m-rocket-launch';
     protected static ?string    $navigationLabel = 'Digitalizacion Pagares';
     protected static ?string    $navigationGroup = 'Gestion Documental';
-    protected static ?string    $modelLabel = 'Documentos';
+    protected static ?string    $modelLabel = 'Documento Pagare';
+    protected static ?string    $pluralModelLabel = 'Digitalizacion de Pagares';
     protected static ?string    $slug = 'Par/Tab/Digitalizar';
     protected static ?int       $navigationSort = 2;
 
@@ -62,10 +64,6 @@ class DocumentoResource extends Resource
                         return Collection::make([]);
                     }
                 }),
-
-
-
-
             FileUpload::make('ruta_imagen')
                 ->label('Pagare y Carta de Instucciones')
                 ->getUploadedFileNameForStorageUsing(
@@ -80,9 +78,6 @@ class DocumentoResource extends Resource
                 ->disk('public')
                 ->directory('pagares')
                 ->visibility('public'),
-
-
-
             FileUpload::make('ruta_imagen_1')
                 ->label('Comprobante Contabilidad')
                 ->getUploadedFileNameForStorageUsing(
@@ -128,6 +123,7 @@ class DocumentoResource extends Resource
             ]);
     }
 
+
     public static function table(Table $table): Table
     {
         return $table
@@ -146,7 +142,6 @@ class DocumentoResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
